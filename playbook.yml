@@ -1,0 +1,15 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Run the web container
+      docker_container:
+        name: devops-web
+        image: your_dockerhub_user/my-devops-app
+        ports:
+          - "80:80"
+
